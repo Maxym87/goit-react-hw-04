@@ -1,0 +1,15 @@
+
+
+.btn {
+  background-color: blue;
+  border-radius: 10px;
+  border: none;
+  height: 30px;
+  padding: 20px;
+  color: #cdfefa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  cursor: pointer;
+}

@@ -3,6 +3,13 @@ body {
   line-height: 1.5;
 }
 
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+font-size: 20px;
+}
+
 h1,
 h2,
 h3,
@@ -24,4 +31,5 @@ img {
   display: block;
   max-width: 100%;
 }
+
 

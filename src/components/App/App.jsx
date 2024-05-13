@@ -1,4 +1,5 @@
 
+import css from './App.module.css'
 import { useEffect, useState } from "react"
 import { fetchImeges } from "../../fetch-api"
 import SearchBar from "../SearchBar/SearchBar"
@@ -7,6 +8,7 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage"
 import ImageGallery from "../ImageGallery/ImageGallery"
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn"
 import ImageModal from "../ImageModal/ImageModal"
+
 
 export default function App() { 
 
@@ -67,7 +69,7 @@ export default function App() {
 
   
   return (
-<div>
+<div className={css.container}>
   <SearchBar onSearch={handleSearch} />
   {isLoad && <Loader onLoad={isLoad}/>}
  {error && <ErrorMessage/>}
