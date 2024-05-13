@@ -3,7 +3,6 @@ import { useEffect, useState } from "react"
 import { fetchImeges } from "../../fetch-api"
 import SearchBar from "../SearchBar/SearchBar"
 import Loader from "../Loader/Loader"
-import Modal from 'react-modal';
 import ErrorMessage from "../ErrorMessage/ErrorMessage"
 import ImageGallery from "../ImageGallery/ImageGallery"
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn"
@@ -16,8 +15,10 @@ export default function App() {
   const [error, setError] = useState(false);
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState('')
-    const [modalItem, setModalItem] = useState(null);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modal, setModal] = useState(false);
+  const [imageURL, setImageURL] = useState('');
+  const [userName, setUserName] = useState(null);
+  const [likes, setLikes] = useState(null);
   
 
 
@@ -32,14 +33,16 @@ export default function App() {
   setPage(page + 1)
   }
 
-    const openModal = item => {
-    setModalItem(item);
-    setModalIsOpen(true);
-  };
+  const openModal = (url, likes, username) => {
+    setModal(true);
+    setImageURL(url);
+    setUserName(username);
+    setLikes(likes);
+  }
 
   const closeModal = () => {
-    setModalIsOpen(false);
-  };
+    setModal(false);
+  }
   
   useEffect(() => {
     async function getImages() {
@@ -61,7 +64,7 @@ export default function App() {
   getImages() 
   }, [page, query])
 
-  Modal.setAppElement("#root")
+
   
   return (
 <div>
@@ -70,15 +73,7 @@ export default function App() {
  {error && <ErrorMessage/>}
   {images.length > 0 && <ImageGallery items={images} onClick={openModal}/>}
       {images.length > 0 && !isLoad && <LoadMoreBtn onClick={handleLoadMore} />}
-      {modalItem && (
-        <ImageModal
-          item={modalItem}
-          modalIsOpen={modalIsOpen}
-          closeModal={closeModal}
-          
-        />
-        
-      )}
+      {modal && <ImageModal img={imageURL} likes={likes} user={userName} modalState={modal} onClose={closeModal} />}
 </div>
   )
 }
