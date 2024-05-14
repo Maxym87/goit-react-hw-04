@@ -47,10 +47,11 @@ export default function App() {
   }
   
   useEffect(() => {
-    async function getImages() {
       if (query === '') {
         return;
   }
+
+    async function getImages() {
       try {
         setError(false);
         setIsLoad(true);
@@ -72,7 +73,7 @@ export default function App() {
 <div className={css.container}>
   <SearchBar onSearch={handleSearch} />
   {isLoad && <Loader onLoad={isLoad}/>}
- {error && <ErrorMessage/>}
+      {error && <ErrorMessage />}
   {images.length > 0 && <ImageGallery items={images} onClick={openModal}/>}
       {images.length > 0 && !isLoad && <LoadMoreBtn onClick={handleLoadMore} />}
       {modal && <ImageModal img={imageURL} likes={likes} user={userName} modalState={modal} onClose={closeModal} />}

@@ -9,6 +9,7 @@ export default function SearchBar({onSearch}) {
       onSubmit={(values, actions) => {
         if (values.query === '') {
   toast.error('Please enter your search query!')
+          return;
 }
       onSearch(values.query);
       actions.resetForm()
