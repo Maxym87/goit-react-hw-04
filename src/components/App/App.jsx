@@ -26,7 +26,7 @@ export default function App() {
 
   const handleSearch = (newQuery) => {
     setQuery(newQuery);
-    setPage(page + 1);
+    setPage(1);
     setImages([]);
 }
   
